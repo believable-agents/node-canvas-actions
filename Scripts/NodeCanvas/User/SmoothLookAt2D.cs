@@ -8,7 +8,7 @@ using System.Collections;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 
-[Category("★ Uruk")]
+[Category("★ ViAgents")]
 public class SmoothLookAt2D : ActionTask<Transform> {
 
 	public BBParameter<GameObject> lookAt;

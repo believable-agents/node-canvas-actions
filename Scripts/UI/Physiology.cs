@@ -52,10 +52,10 @@ namespace ViAgents.Unity
 			set { this.physiology.Energy = value; }
 		}
 		
-		void Awake() {
+		void Start() {
 			this.agent = GetComponent<ViAgent> ();
 			if (this.agent == null) {
-				Debug.LogError (gameObject.name + " has no ViAgent component assigned!");
+				Debug.LogError (gameObject.name + " has no PriorityPlanningAgent component assigned!");
 			}
 			
 			// find the time control component
@@ -66,7 +66,7 @@ namespace ViAgents.Unity
                 player = GameObject.FindGameObjectWithTag("Player").transform;
             }
 
-            this.physiology = new PhysiologyModel(dayNight.DayInMinutes * 60, this.agent);
+            this.physiology = new PhysiologyModel(dayNight.DayInMinutes * 60, this.agent.agent);
         }
 
 	    private float elapsedTimeInSeconds = 0f;
@@ -109,7 +109,7 @@ namespace ViAgents.Unity
 		
 		
 		void NotifyAgent(string state, int priority) {
-			this.agent.Sense(new SensorData(Sensor.Physiology, state, priority, -1, -1));
+			this.agent.agent.Sense(new SensorData(Sensor.Physiology, state, priority, -1, -1));
 		}        
 	}
 }

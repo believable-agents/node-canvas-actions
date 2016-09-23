@@ -30,7 +30,7 @@ namespace ViAgents.Unity
                 return;
             }
 
-            viagent.Sense(new SensorData(sensor, request, priority));
+            viagent.agent.Sense(new SensorData(sensor, request, priority));
             EndAction();
         }
 

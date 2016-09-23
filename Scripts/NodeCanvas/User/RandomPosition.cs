@@ -7,7 +7,7 @@ using ParadoxNotion.Design;
 namespace ViAgents.NodeCanvas.Actions 
 {
 	[Name("Random Position")]
-	[Category("★ Uruk")]
+	[Category("★ ViAgents")]
 	public class RandomPosition : ActionTask<Transform>
 	{
 		public BBParameter<Vector3> position;
