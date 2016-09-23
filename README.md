@@ -1,1 +1,3 @@
-# node-canvas-actions
+# vi-agents-unity
+
+This repo contains the Unity mappings for ViAgent
