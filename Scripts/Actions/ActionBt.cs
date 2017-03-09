@@ -93,7 +93,8 @@ namespace ViAgents.Unity.Actions
             var bto = agent.GetComponent<BehaviourTreeOwner>();
             bto.behaviour = bt;
             bt.repeat = runForever;
-            bt.StartGraph(agent, bto.blackboard, (result) => agent.ActionFinished(this));
+            // TODO: Investigate the effect of the parameter
+            bt.StartGraph(agent, bto.blackboard, true, (result) => agent.ActionFinished(this));
         }
 
         public override void Abort(object oagent)

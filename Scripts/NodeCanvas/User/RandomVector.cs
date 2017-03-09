@@ -8,7 +8,7 @@ using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 
 [Category("★ User")]
-public class RandomVector : ActionTask<NavMeshAgent>{
+public class RandomVector : ActionTask<UnityEngine.AI.NavMeshAgent>{
 
 	public float xMin, xMax, yMin, yMax, zMin, zMax;
 

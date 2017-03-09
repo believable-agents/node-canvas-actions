@@ -15,8 +15,7 @@ namespace ViAgents.NodeCanvas.Actions
 		public float radius = 60f;
 	    public BBParameter<ConvexBounds> convexBounds;
 
-        //public ConvexBounds convexBounds;		
-		static ConvexBounds bounds;
+        //public ConvexBounds convexBounds;
 	    private ConvexBounds currentBounds;
   
 //		protected override void OnAwake ()

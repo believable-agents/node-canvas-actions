@@ -18,8 +18,6 @@ public class ThrowObject : ActionTask<Transform> {
 	private Transform referenceObject;
 	public Transform parentTransform;
 
-	Collider parentCollider;
-
 	protected override string OnInit ()
 	{
 		referenceObject = agent.transform.Search (throwFrom);
@@ -48,10 +46,6 @@ public class ThrowObject : ActionTask<Transform> {
 
 		var distance = Vector3.Distance (parentTransform.position, parentTransform.PlayerPosition());
 		projectile.GetComponent<Rigidbody>().AddForce(parentTransform.forward * UnityEngine.Random.Range(0.7f * distance * 50, 1.3f * distance * 50));//cannon's x axis
-
-		if (parentCollider != null) { 
-			// Physics.IgnoreCollision (projectile.collider, parentCollider);
-		}
 
 		EndAction (true);
 	}

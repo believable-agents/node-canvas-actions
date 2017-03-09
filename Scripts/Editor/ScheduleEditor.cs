@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEditor;
 using Rotorz.ReorderableList;
 using ViAgents.Schedules;
-using Schedule = ViAgents.Unity.Schedules.Schedule;
 
 
 [CustomEditor(typeof(Schedule))]
