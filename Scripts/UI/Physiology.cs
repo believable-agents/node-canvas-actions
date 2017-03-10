@@ -63,7 +63,11 @@ namespace ViAgents.Unity
                 // find timer
 				dayNight = GameObject.Find("DayNight").GetComponent<DayNightCycle>();
                 // initialise player
-                player = GameObject.FindGameObjectWithTag("Player").transform;
+                var p = GameObject.FindGameObjectWithTag("Player");
+                if (p != null)
+                {
+                    player = GameObject.FindGameObjectWithTag("Player").transform;
+                }
             }
 
             this.physiology = new PhysiologyModel(dayNight.DayInMinutes * 60, this.agent.agent);
