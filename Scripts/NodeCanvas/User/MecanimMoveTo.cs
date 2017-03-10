@@ -18,6 +18,8 @@ namespace NodeCanvas.Actions{
 		private float speed;
 		public bool forcePosition;
 
+        private bool finished;
+
 		//for faster access
 		private UnityEngine.AI.NavMeshAgent navAgent{
 			get {return (UnityEngine.AI.NavMeshAgent)agent; }
@@ -30,7 +32,7 @@ namespace NodeCanvas.Actions{
 		}
 		
 		protected override string info{
-			get {return "GoTo " + Target.ToString();}
+			get { return "GoTo " + Target.ToString();}
 		}
 		
 		protected override string OnInit ()
@@ -65,7 +67,7 @@ namespace NodeCanvas.Actions{
 		}
 		
 		protected override void OnUpdate(){
-			if (rotatingTowardsTarget)
+			if (finished || rotatingTowardsTarget)
 				return;
 
 			// set speed
@@ -96,8 +98,12 @@ namespace NodeCanvas.Actions{
 					navAgent.transform.position = Target;
 					StartCoroutine(RotateTowardsTarget(LookAt, true));
 				} else {
-					EndAction(true);
+                    if (Success())
+                    {
+                        EndAction(true);
+                    }
 				}
+                finished = true;
 				return;
 			}
 			
@@ -129,7 +135,10 @@ namespace NodeCanvas.Actions{
 			// after rotation we may finish
 			if (finish) {
 				Debug.Log("Shall finish");
-				EndAction(true);
+                if (Success())
+                {
+                    EndAction(true);
+                }
 			}
 
 			rotatingTowardsTarget = false;
@@ -143,8 +152,8 @@ namespace NodeCanvas.Actions{
 			}
 		}
 
-		protected virtual void Success() {
-		
+		protected virtual bool Success() {
+            return true;
 		}
 	}
 }
