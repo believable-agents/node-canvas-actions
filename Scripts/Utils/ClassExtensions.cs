@@ -24,7 +24,7 @@ public static class ClassExtensions
 		foreach (var var2 in board2.variables) {
 			if (!board1.variables.ContainsKey(var2.Key)) {
 				// Debug.Log("Adding: " + val.dataName + " " + val.objectValue);
-				var variable = board1.AddVariable(var2.Key, var2.Value.varType);
+				board1.AddVariable(var2.Key, var2.Value.varType);
 				board1.SetValue(var2.Key, var2.Value.value);
 			}
 		}

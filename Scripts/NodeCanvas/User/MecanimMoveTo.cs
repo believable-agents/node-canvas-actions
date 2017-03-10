@@ -16,7 +16,7 @@ namespace NodeCanvas.Actions{
 		private float remainingDistance;
 		private bool rotatingTowardsTarget;
 		private float speed;
-		private bool forcePosition;
+		public bool forcePosition;
 
 		//for faster access
 		private UnityEngine.AI.NavMeshAgent navAgent{

@@ -26,7 +26,7 @@ namespace NodeCanvas.Actions
 		
 		protected override void OnExecute(){
 			
-			if (target.value == null){
+			if (target.value == Vector3.zero){
 				Debug.LogError("Target location is not set correctly on Move To Position Action", agent.gameObject);
 				EndAction(false);
 				return;

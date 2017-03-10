@@ -26,10 +26,10 @@ public class Spawn : MonoBehaviour {
     public bool male;
 	public List<ActionSet> actionSets;
 	public Inventory inventory;
-	public ViAgents.Unity.Schedules.Schedule schedule;
+	public ViAgents.Unity.Schedules.ViAgentSchedule schedule;
 	public RuntimeAnimatorController animationController;
 	public string agentName;
-	public string tag = "Crowd";
+	public string agentTag = "Crowd";
     public Vector3 spawnOffset;
     public float scaleMin;
     public float scaleMax;
@@ -41,13 +41,14 @@ public class Spawn : MonoBehaviour {
     public ConvexBounds bounds;
     public float minHeight;
     public float maxHeight;
+    public bool addUI;
 
 	private static int counter;
 	private static Transform clonesParent;
 
 	// in here we'll keep all action sets
 	// we keep a string refernce so that prefabs can access gameobjects
-	private static Dictionary<string, List<ActionSet>> actionSetDictionary = new Dictionary<string, List<ActionSet>>();
+	// private static Dictionary<string, List<ActionSet>> actionSetDictionary = new Dictionary<string, List<ActionSet>>();
 
 	// Use this for initialization
 	void Start () {
@@ -117,7 +118,7 @@ public class Spawn : MonoBehaviour {
 
         // set name
         spawn.name = (agentName == null ? "Clone" : agentName) + counter++;
-        spawn.tag = this.tag;
+        spawn.tag = this.agentTag;
 
         // set parent
         if (clonesParent == null)
@@ -194,10 +195,16 @@ public class Spawn : MonoBehaviour {
         // scheduler
         var scheduler = spawn.AddComponent<Scheduler>();
         scheduler.schedule = schedule;
+
+        // ui
+        if (this.addUI)
+        {
+            var ui = spawn.AddComponent<ViAgentUi>();
+            ui.enabled = true;
+        }
     }
 
     static Vector3 positionSize = new Vector3(0.3f, 0.05f, 0.3f);
-    static Vector3 lookAtSize = new Vector3(0.2f, 0.05f, 0.2f);
 
     public void OnDrawGizmosSelected()
     {

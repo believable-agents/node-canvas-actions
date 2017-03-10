@@ -58,7 +58,7 @@ public static class ScriptableObjectUtility
         [MenuItem("Assets/Create/ScriptableObjects/Schedule")]
         public static void CreateAsset ()
         {
-            ScriptableObjectUtility.CreateAsset<ViAgents.Unity.Schedules.Schedule> ();
+            ScriptableObjectUtility.CreateAsset<ViAgents.Unity.Schedules.ViAgentSchedule> ();
         }
     }
 

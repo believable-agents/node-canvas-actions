@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEditor;
 using Rotorz.ReorderableList;
 using ViAgents.Schedules;
+using ViAgents.Unity.Schedules;
 
-
-[CustomEditor(typeof(Schedule))]
+[CustomEditor(typeof(ViAgentSchedule))]
 public class ScheduleEditor : Editor {
     SerializedProperty items;
 

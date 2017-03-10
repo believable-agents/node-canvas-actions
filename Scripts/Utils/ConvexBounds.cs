@@ -22,7 +22,7 @@ public class ConvexBounds : MonoBehaviour {
         var c_z = 0f;
 
         var p = new List<Vector2>();;
-		var i = 0;
+		// var i = 0;
 		foreach (var tran in Bounds)
 		{
 		    if (tran == null) continue;
@@ -158,7 +158,6 @@ public class ConvexBounds : MonoBehaviour {
             {
                 Debug.LogError("Safe exit");
                 throw new UnityException("Retry limit reached, position not found");
-                break;
             }
 
             // find y

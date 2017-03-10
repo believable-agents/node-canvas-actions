@@ -28,7 +28,7 @@ namespace ViAgents.Unity
         private Vector2 scrollPosition = Vector2.zero;
 
         private bool showActions = true;
-        private bool showQueue = true;
+        // private bool showQueue = true;
         private bool showSensor = true;
         private bool showDebug = false;
         // Use this for initialization

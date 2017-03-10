@@ -24,7 +24,7 @@ namespace ViAgents.Unity
 
 	    private PhysiologyModel physiology;
 		static DayNightCycle dayNight;
-		static Transform player;
+		// static Transform player;
 		
 		ViAgent agent;	
         
@@ -63,11 +63,11 @@ namespace ViAgents.Unity
                 // find timer
 				dayNight = GameObject.Find("DayNight").GetComponent<DayNightCycle>();
                 // initialise player
-                var p = GameObject.FindGameObjectWithTag("Player");
-                if (p != null)
-                {
-                    player = GameObject.FindGameObjectWithTag("Player").transform;
-                }
+                //var p = GameObject.FindGameObjectWithTag("Player");
+                //if (p != null)
+                //{
+                //    player = GameObject.FindGameObjectWithTag("Player").transform;
+                //}
             }
 
             this.physiology = new PhysiologyModel(dayNight.DayInMinutes * 60, this.agent.agent);

@@ -44,6 +44,12 @@ namespace ViAgents.Unity.Actions
             var agent = (ViAgent)oagent;
             var bt = agent.GetComponent<BehaviourTreeOwner>();
 
+            if (bt == null)
+            {
+                Debug.LogError("Target agent needs to have component BehaviourTreeOwner: " + agent.gameObject.name);
+                return;
+            }
+
             // get bb
             var bb = bt.blackboard;
 
@@ -58,7 +64,7 @@ namespace ViAgents.Unity.Actions
 
             // switch to new
             // agent.Log(LogSource.Action, "BT Start");
-            if (BT.name == bt.graph.name)
+            if (bt.graph != null && BT.name == bt.graph.name)
             {
                 // agent.Log(LogSource.Action, "Same graph, restarting");
                 bt.StartBehaviour((result) =>

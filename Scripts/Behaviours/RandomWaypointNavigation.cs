@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using NodeCanvas.Framework;
 using SWS;
 
-namespace Gok.AI
+namespace ViAgents.Unity.Behaviours
 {
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
     public class RandomWaypointNavigation : MonoBehaviour

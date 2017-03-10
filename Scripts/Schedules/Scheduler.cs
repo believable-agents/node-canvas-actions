@@ -4,7 +4,6 @@ using ViAgents.Schedules;
 namespace ViAgents.Unity.Schedules {
 
 	using UnityEngine;
-	using ViAgentSchedule = ViAgents.Schedules.Schedule;
      
 	[RequireComponent(typeof(ViAgent))]
 	public class Scheduler : MonoBehaviour {
@@ -13,7 +12,7 @@ namespace ViAgents.Unity.Schedules {
 
 		#region Fields
 	    private ScheduleManager scheduleManager;
-	    public Schedule schedule;
+	    public ViAgentSchedule schedule;
 		#endregion
 
 		void Start() {
@@ -27,7 +26,7 @@ namespace ViAgents.Unity.Schedules {
 			}
 
             // create the schedule and scheduler
-		    var agentSchedule = new ViAgentSchedule(schedule.items);
+		    var agentSchedule = new Schedule(schedule.items);
 		    this.scheduleManager = new ScheduleManager(viAgent.agent, agentSchedule);
 
 			if (timeControl == null) {

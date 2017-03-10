@@ -15,10 +15,15 @@ namespace ViAgents.Unity
         [HideInInspector]
         public PriorityPlanningAgent agent;
 
-        void Awake()
+        void Start()
         {
             // copy all actions into array
             var allActions = new List<ActionBt>();
+            if (actions == null)
+            {
+                Debug.LogError(gameObject.name + " has no actions assigned in his action set");
+                return;
+            }
             actions.ForEach((a) =>
             {
                 if (a == null)

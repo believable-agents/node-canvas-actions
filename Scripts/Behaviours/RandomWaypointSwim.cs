@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Gok.AI
+namespace ViAgents.Unity.Behaviours
 {
     public class RandomWaypointsSwim : RandomWaypointNavigation
     {
@@ -10,7 +10,7 @@ namespace Gok.AI
         private float originalOffset;
         private Vector3[] waypointsArray;
 
-        void Start()
+        new void Start()
         {
             base.Start();
 
@@ -23,7 +23,7 @@ namespace Gok.AI
         }
 
         // Update is called once per frame
-        void Update()
+        new void Update()
         {
             if (trans.position.y > waterLevel)
             {
