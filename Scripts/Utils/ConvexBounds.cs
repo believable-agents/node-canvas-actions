@@ -110,7 +110,7 @@ public class ConvexBounds : MonoBehaviour {
         }
 
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(bounds.Center, 1);
+        Gizmos.DrawWireCube(bounds.Center, Vector3.one * 0.5f);
 
         Gizmos.DrawLine(
             new Vector3(bounds.BottomLeft.x, 31, bounds.BottomLeft.y),

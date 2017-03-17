@@ -32,7 +32,6 @@ public class ActionSetEditor : Editor {
 
 
         serializedObject.Update();
-
         ReorderableListGUI.Title("Actions");
         ReorderableListGUI.ListField(actions);
         

@@ -9,7 +9,7 @@ namespace ViAgents.Unity
     //[ExecuteInEditMode]
     public class ViAgentUi : MonoBehaviour
     {
-        public bool showUI;
+        public bool showUI = false;
 
         //public GUIStyle progressNormal;
         //public GUIStyle progressWarning;

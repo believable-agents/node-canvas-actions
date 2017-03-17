@@ -102,7 +102,7 @@ public class Spawn : MonoBehaviour {
         // in case this is an interactive object, we spawn object at an offset position
         if (GetComponent<InteractiveObjectBT>() != null)
         {
-            position = GetComponent<InteractiveObjectBT>().OffsetPosition;
+            position = GetComponent<InteractiveObjectBT>().FindPosition().Position;
         }
 
         // spawn model

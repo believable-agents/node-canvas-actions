@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using NodeCanvas.Framework;
+using System;
 
 namespace NodeCanvas.Actions{
 	public abstract class MecanimMoveTo : ActionTask<UnityEngine.AI.NavMeshAgent>{
@@ -19,6 +20,7 @@ namespace NodeCanvas.Actions{
 		public bool forcePosition;
 
         private bool finished;
+        private Vector3 currentTarget;
 
 		//for faster access
 		private UnityEngine.AI.NavMeshAgent navAgent{
@@ -48,16 +50,24 @@ namespace NodeCanvas.Actions{
 		
 		protected override void OnExecute(){
 			this.currentSpeed = 0;
-//			Debug.Log ("Set speed to: " + this.currentSpeed);
-			
-			if ( (navAgent.transform.position - Target).magnitude < navAgent.stoppingDistance){
+            //			Debug.Log ("Set speed to: " + this.currentSpeed);
+
+            try {
+                this.currentTarget = this.Target;
+            } catch (Exception ex) {
+                Debug.LogError(ex.Message);
+                EndAction(false);
+                return;
+            }
+
+			if ( (navAgent.transform.position - this.currentTarget).magnitude < navAgent.stoppingDistance){
 				animator.SetFloat("Speed", 0f);
 //				Debug.Log("Already there");
 				EndAction(true);
 				return;
 			}
 			
-			if (!navAgent.SetDestination (Target)) {
+			if (!navAgent.SetDestination (this.currentTarget)) {
 				animator.SetFloat("Speed", 0f);
 //				Debug.Log("Bad destination 1");
 				EndAction (false);
@@ -77,15 +87,15 @@ namespace NodeCanvas.Actions{
 				this.currentSpeed = this.speed;
 			}
 
-			if (lastRequestedPosition != Target){
+			if (lastRequestedPosition != this.currentTarget) {
 				
-				if (!navAgent.SetDestination(Target)){
+				if (!navAgent.SetDestination(this.currentTarget)){
 					animator.SetFloat("Speed", 0f);
 //					Debug.Log("Bad destination");
 					EndAction(false);
 					return;
 				}				
-				lastRequestedPosition = Target;
+				lastRequestedPosition = this.currentTarget;
 			}
 			
 			if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance){
@@ -95,7 +105,7 @@ namespace NodeCanvas.Actions{
 				// we may request that position and rotation is forced on player
 				if (forcePosition) {
 					// TODO: Tween movement
-					navAgent.transform.position = Target;
+					navAgent.transform.position = this.currentTarget;
 					StartCoroutine(RotateTowardsTarget(LookAt, true));
 				} else {
                     if (Success())
@@ -118,7 +128,7 @@ namespace NodeCanvas.Actions{
 				// turn towards object
 				navAgent.Stop ();
 				this.animator.SetFloat ("Speed", 0f);
-				StartCoroutine(RotateTowardsTarget(Target));				
+				StartCoroutine(RotateTowardsTarget(this.currentTarget));				
 			} 
 			remainingDistance = navAgent.remainingDistance;
 
